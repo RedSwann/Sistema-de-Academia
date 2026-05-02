@@ -34,7 +34,7 @@ public class Main {
                                 break;
 
                             case 2:
-                                instrutorService.listasInstrutores();
+                                // - Criar lista
                                 break;
 
                             case 3:
