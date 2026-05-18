@@ -1,12 +1,17 @@
-import menus.MenuInicial;
-import menus.MenuInstrutor;
+//menus
+import menus.*;
+
+//service
+import service.AlunoService;
 import service.InstrutorService;
+
 
 public class Main {
     public static void main(String[] args) {
 
         MenuInicial menu = new MenuInicial();
         InstrutorService instrutorService = new InstrutorService();
+        AlunoService alunoService = new AlunoService();
 
         int opcao;
 
@@ -16,7 +21,30 @@ public class Main {
 
             switch (opcao){
                 case 1:
-                    System.out.println("Criar classe Alunos");
+                    MenuAluno menuAluno = new MenuAluno();
+                    int opcaoAluno;
+
+                    do{
+                        opcaoAluno = menuAluno.exibirMenuAluno();
+
+                        switch(opcaoAluno){
+                            case 1://cadastrar
+                                alunoService.cadastrarAluno();
+                                break;
+                            case 2://listar
+                                alunoService.listarAlunos();
+                                break;
+                            case 3://editar
+                                alunoService.editarAluno();
+                                break;
+                            case 4: //excluir
+                                alunoService.excluirAluno();
+                                break;
+                            case 0:
+                                System.out.println("Retornando para o menu principal....");
+                                break;
+                        }
+                    }while(opcaoAluno != 0);
                     break;
 
                 case 2:
@@ -55,7 +83,34 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.println("Criar classe Planos");
+                    MenuPlano menuPlano = new MenuPlano();
+                    int opcaoPlano;
+                    do {
+                        opcaoPlano = menuPlano.exibirMenuPlano();
+
+                        switch (opcaoPlano){
+                            case 1://cadastrar
+                                break;
+
+                            case 2:
+                                // listar
+                                break;
+
+                            case 3:
+                                //  editar
+                                break;
+                            case 4:
+                                // excluir
+                                break;
+
+                            case 0:
+                                System.out.println("Voltando...");
+
+                            default:
+                                System.out.println("Opção invalida!");
+                        }
+                    }while (opcaoPlano != 0);
+
                     break;
 
                 case 4:
