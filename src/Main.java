@@ -4,7 +4,7 @@ import menus.*;
 //service
 import service.AlunoService;
 import service.InstrutorService;
-
+import service.AulaService;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,6 +12,7 @@ public class Main {
         MenuInicial menu = new MenuInicial();
         InstrutorService instrutorService = new InstrutorService();
         AlunoService alunoService = new AlunoService();
+        AulaService aulaService = new AulaService();
 
         int opcao;
 
@@ -114,7 +115,30 @@ public class Main {
                     break;
 
                 case 4:
-                    System.out.println("Criar classe Aulas");
+                    MenuAula menuAula = new MenuAula();
+                    int opcaoAula;
+
+                    do{
+                        opcaoAula = menuAula.exibirMenuAula();
+
+                        switch(opcaoAula){
+                            case 1://cadastrar
+                                aulaService.cadastrarAula();
+                                break;
+                            case 2://listar
+                                aulaService.listarAulas();
+                                break;
+                            case 3://editar
+                                aulaService.editarAula();
+                                break;
+                            case 4: //excluir
+                                aulaService.excluirAula();
+                                break;
+                            case 0:
+                                System.out.println("Retornando para o menu principal....");
+                                break;
+                        }
+                    }while(opcaoAula != 0);
                     break;
 
                 case 5:
