@@ -83,7 +83,7 @@ public class Main {
 
                     break;
 
-                case 3:
+               case 3:
                     MenuPlano menuPlano = new MenuPlano();
                     int opcaoPlano;
                     do {
@@ -91,17 +91,21 @@ public class Main {
 
                         switch (opcaoPlano){
                             case 1://cadastrar
+                                planoService.cadastrarPlano();
                                 break;
 
                             case 2:
                                 // listar
+                                planoService.listarPlanos();
                                 break;
 
                             case 3:
                                 //  editar
+                                planoService.editarPlano();
                                 break;
                             case 4:
                                 // excluir
+                                planoService.excluirPlano();
                                 break;
 
                             case 0:
