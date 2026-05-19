@@ -1,8 +1,12 @@
 package service;
 
+import database.Conexao;
+import model.AlunoModel;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Scanner;
-import model.AlunoModel;
 
 public class AlunoService {
     private Scanner sc = new Scanner(System.in);
@@ -49,8 +53,7 @@ public class AlunoService {
                 plano
         );
 
-        listaAlunos.add(aluno);
-        System.out.println("Aluno cadastrado com sucesso!");
+        salvarNoBanco(aluno);
     }
 
     public void listarAlunos(){
@@ -183,6 +186,44 @@ public class AlunoService {
         }
 
         System.out.println("Aluno não encontrado.");
+    }
+
+    private void salvarNoBanco(AlunoModel aluno) {
+
+        String sql = """
+                INSERT INTO aluno
+                (alu_cpf,
+                 alu_primeiro_nome,
+                 alu_nome_meio,
+                 alu_ultimo_nome,
+                 alu_telefone,
+                 alu_email,
+                 alu_data_nascimento,
+                 alu_data_matricula,
+                 alu_plano)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """;
+
+        try (Connection conn = Conexao.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, aluno.getCpf());
+            stmt.setString(2, aluno.getPrimeiroNome());
+            stmt.setString(3, aluno.getNomeMeio());
+            stmt.setString(4, aluno.getUltimoNome());
+            stmt.setString(5, aluno.getTelefone());
+            stmt.setString(6, aluno.getEmail());
+            stmt.setString(7, aluno.getDataNascimento());
+            stmt.setString(8, aluno.getDataMatricula());
+            stmt.setString(9, aluno.getPlano());
+
+            stmt.executeUpdate();
+
+            System.out.println("Aluno salvo com sucesso!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 
