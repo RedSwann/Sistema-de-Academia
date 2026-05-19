@@ -192,15 +192,15 @@ public class AlunoService {
 
         String sql = """
                 INSERT INTO aluno
-                (alu_cpf,
-                 alu_primeiro_nome,
-                 alu_nome_meio,
-                 alu_ultimo_nome,
-                 alu_telefone,
-                 alu_email,
-                 alu_data_nascimento,
-                 alu_data_matricula,
-                 alu_plano)
+                (aln_cpf,
+                 aln_primeiro_nome,
+                 aln_nome_meio,
+                 aln_ultimo_nome,
+                 aln_telefone,
+                 aln_email,
+                 aln_data_nascimento,
+                 aln_data_matricula,
+                 aln_plano)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
 
